@@ -1,0 +1,72 @@
+<!--
+  @description       : 
+  @author            : Balchandra Chouki (baluchouki7@gmail.com)
+  @group             : 
+  @last modified on  : 02-04-2024
+  @last modified by  : Balchandra Chouki (baluchouki7@gmail.com)
+-->
+<template>
+    <lightning-card>
+      <div class="" style="width: 100%;margin-left:0px;">
+        <template if:true={recordList}>
+          <lightning-card class="" style="display:block">
+            <p style="text-align: center;font-size:large;font-weight:750;margin-top: -5px">Brighter Tomorrow Foundation's Donation Requests</p>
+            <table style="width:95%;margin-left: 30px;"
+              class="slds-table slds-table_bordered slds-border_left slds-border_right slds-m-vertical_medium">
+              <tbody>
+                <template for:each={recordList} for:item="il" for:index="index">
+                  <tr class="slds-line-height_reset" key={il.Id}>
+                    <td style="Width:40%; line-height:17px" valign="top" data-label="Item Name" key={il.Id}>
+                      <b style="font-size: 16px;">{il.Name}</b>
+                      <p style="font-size: 10px;">{il.Reason_for_Donation_Request__c}</p>
+                    </td>
+                    <td style="Width:5%;" data-label="Item Name" key={il.Id}>&nbsp;</td>
+                    <td style="Width:40%; line-height:22px" key={il.Id}>
+                      <b>₹{il.Funds_Received__c}</b>&nbsp;&nbsp; raised of &nbsp;&nbsp;<b>₹{il.Fund_Request__c}</b><br/>
+                        <!--lightning-progress-bar class="custom-progress-bar" value={il.Progress_Value__c}></lightning-progress-bar-->
+                        <progress value={il.Progress_Value__c} max="100" style="width: 100%;"> {il.Progress_Value__c} </progress>
+                    </td>
+                    
+                    <td style="Width:15%; text-align:center" data-label="Item Name" key={il.Id}>
+                        <lightning-button class="slds-button__icon_x-small" style="margin-left: 9px;"
+                          onclick={f_flag_showhide} id={il} data-index={index} variant="brand-outline" label="Donate" type="button">
+                        </lightning-button>
+                      </td>
+                      
+                  </tr>
+                  <tr key={il.Id}>
+                    <td style="border:none" colspan="4"></td>
+                  </tr>
+                  <tr key={il.Id} id={il.Name} style={il.styleColor}>
+                    <td colspan="4">
+                      <table style="width:100%">
+                        <tr>
+                            <td style="width:30%; border: none;" data-label="Donor Name">
+                                <lightning-input type="text" name="DonorName" onchange={handle_DonorName} key={il.Id}
+                                  data-index={index} label="Entar Name"></lightning-input>
+                            </td>
+                            <td style="width:30%; border: none;" data-label="Donor Email" colspan="7">
+                                <lightning-input type="email" name="email" onchange={handle_DonorEmail} key={il.Id}
+                                  data-index={index} label="Enter Email"></lightning-input>
+                            </td>
+                            <td style="width:30%; border: none;" data-label="DonorAmount" colspan="7">
+                                <lightning-input type="decimal" name="amount" onchange={handle_DonationAmount} key={il.Id}
+                                  data-index={index} label="Enter Amount"></lightning-input>
+                            </td>
+                            <td style="width:10%; border: none;" data-label="Submit" key={il.Id}>
+                                <lightning-button class="slds-m-top_small slds-m-horizontal_xx-large" onclick={submitDonation}
+                                  id={il} data-index={index} variant="brand" label="Submit Donation" type="button">
+                                </lightning-button>
+                            </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </lightning-card>
+        </template>
+      </div>
+    </lightning-card>
+  </template>

@@ -1,0 +1,203 @@
+<!--
+  @description       : 
+  @author            : Balchandra Chouki (baluchouki7@gmail.com)
+  @group             : 
+  @last modified on  : 02-04-2024
+  @last modified by  : Balchandra Chouki (baluchouki7@gmail.com)
+-->
+
+<template>
+    <div class="slds-box slds-box_x-small" style="background-color: white;">
+        <div class="slds-text-align_center" style="font-size:15px; padding:10px; color:rgb(0, 112, 210); "><i><b>Event Calender</b></i></div>
+            <div class="slds-var-p-around_xxx-small" >
+    <!-- Spinner to show on waiting screens -->
+                <template if:true={openSpinner}>
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </template>
+
+                <div class=" slds-grid slds-wrap slds-theme_default">
+                    <div class="slds-col slds-size_9-of-12">
+                            <!-- fullcalendar sits in this div -->
+                        <div id="calendar" class="fullcalendarjs"></div>
+                    </div>
+                    <div class="slds-col slds-size_3-of-12">
+                        <div class=" slds-var-p-around_medium slds-scrollable_y" style="height:625px">
+                            <div class="slds-clearfix">
+                                <div class="slds-float_right">
+                                    <lightning-button icon-name="standard:form" slot="actions" 
+                                                    alternative-text="add" title="Add" size="small"
+                                                    class="slds-var-p-around_medium"
+                                                    label="Register For Event"
+                                                    onclick={addEvent}>
+                                    </lightning-button>
+                                </div>
+                            </div>
+                            <template for:each={events} for:item="eachevent">
+                                <lightning-card key={eachevent.id}
+                                                class="slds-var-p-left_medium slds-var-p-right_small ">
+                                    <p slot="title">
+                                        <span class="slds-var-p-right_x-small">
+                                            <lightning-icon icon-name="standard:event" size="x-small">
+
+                                            </lightning-icon>
+                                        </span>
+                                        {eachevent.title} 
+                                    </p>
+                                    <p class="slds-var-p-horizontal_x-small"> Start: {eachevent.s}</p>
+                                    <p class="slds-var-p-horizontal_x-small">End: {eachevent.e} </p>
+                                    <p class="slds-var-p-horizontal_x-small">Address: {eachevent.address}</p>
+                                </lightning-card>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+    <!-- Open a modal with Event Registration form  -->
+            <template if:true={openModal}>
+                <div data-modal="custommodal" class="modalclass">
+                    <section
+                        role="dialog"
+                        tabindex="-1"
+                        aria-labelledby="modal-heading-01"
+                        aria-modal="true"
+                        aria-describedby="modal-content-id-1"
+                        class="slds-modal slds-fade-in-open">
+                        <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                <lightning-button-icon icon-name="utility:close" 
+                                                        class="slds-modal__close " 
+                                                        alternative-text="Close" 
+                                                        title="Close"
+                                                        size="large"
+                                                        variant="bare-inverse"
+                                                        onclick={handleCancel} >
+                                </lightning-button-icon>
+                                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Event Registration Form</h2>
+                            </header>
+            
+                            <div style="display:block; background-color:white" >
+                                <template if:true={personaldetails} >
+                                    <div class="slds-scrollable_y" style="height:475px;">
+                                        <div  style="background-color:white; ">
+                                            <div style="padding-left: 10px;"><img style="max-height: 100px" alt="logo" src={Logo}/></div>
+                                        </div>
+                                        <div class="c-container " style="padding-left:25px; padding-right:25px; padding-bottom:25px;">
+                                            <div style="padding:20px; border:0.7px solid #d3d3d3; border-radius:5px;">
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-size_4-of-4" style="padding:8px; background-color: rgb(0 112 210);
+                                                        color: white; border: none; text-align: left; outline: none;
+                                                        opacity: 0.9; border-radius:7px; ">
+                                                        <h2 style="text-align: left;"> <b>Details</b></h2>
+                                                    </div>
+                                                    <div class="slds-size_4-of-4">
+                                                        <lightning-combobox name="eventSelected" label="Please select Event" style="padding:7px"
+                                                            options={EventOptions} onchange={handleKeyChange} required="true">
+                                                        </lightning-combobox>
+                                                    </div>
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="Name"
+                                                            label="Enter Full Name"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="Phone"
+                                                            label="Phone"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="email" name="Email"
+                                                            label="Email id"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="street"
+                                                            label="Street"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="City"
+                                                            label="City"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="State"
+                                                            label="State"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="Country"
+                                                            label="Country"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                            
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-input type="text" name="PostalCode"
+                                                            label="Postal/Zip Code"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                                                    <hr style="color:gray"/>
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-radio-group name="Volunteer" label="Do you want to Volunteer this Event?"
+                                                        options={Options} type="radio" class="slds-var-m-around_x-small validateinput2"
+                                                        onchange={handleKeyChange} required="true"></lightning-radio-group>
+                                                    </div>
+                                                    <div if:true={volunteerTrue} class="slds-size_2-of-4">
+                                                        <lightning-radio-group name="experience" label="Do You have Experience in volunteer?"
+                                                        options={Options} type="radio" class="slds-var-m-around_x-small validateinput2"
+                                                        onchange={handleKeyChange} required="true"></lightning-radio-group>
+                                                    </div>
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-radio-group name="GuestSelection" label="Will you have a guest with you?"
+                                                        options={Options} type="radio" class="slds-var-m-around_x-small validateinput2"
+                                                        onchange={handleKeyChange} required="true"></lightning-radio-group>
+                                                    </div>
+                                                    <div if:true={guestTrue} class="slds-size_2-of-4">
+                                                        <lightning-input  type="text" name="GuestName"
+                                                            label="Guest Name"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange} required="true">
+                                                        </lightning-input>
+                                                    </div>
+                                                    <div class="slds-size_2-of-4">
+                                                        <lightning-radio-group name="UpdatesSelection" label="Would you like to be updated about the upcoming events?"
+                                                        options={Options} type="radio" class="slds-var-m-around_x-small validateinput2"
+                                                        onchange={handleKeyChange} required="true"></lightning-radio-group>
+                                                    </div>
+                            
+                                                    <div class="slds-size_4-of-4">
+                                                        <lightning-textarea type="textarea" name="Comments"
+                                                            label="Any Comments"
+                                                            class="slds-var-m-around_x-small validateinput2"  onchange={handleKeyChange}>
+                                                        </lightning-textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>                    
+                            </div>
+
+                            <footer class="slds-modal__footer">
+                                <lightning-button class="slds-var-p-around_xx-small" label="Save" title="Save" variant="brand" icon-name="utility:save" onclick={handleSave}></lightning-button>
+                                <lightning-button class="slds-var-p-around_xx-small" label="Close" title="Close" icon-name="utility:close" onclick={handleCancel}></lightning-button>
+                            </footer>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

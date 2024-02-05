@@ -1,0 +1,176 @@
+<apex:page sidebar="false" controller="CustomLoginController" showheader="false" standardStylesheets="true" title="{!$Label.site.forgot_password}">
+    <apex:form >
+        <apex:pageMessages id="error"/>
+        
+        <html lang="en">
+            
+            <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" /> -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                      crossorigin="anonymous" />
+                
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+                <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script> -->
+                <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                crossorigin="anonymous"></script>
+                
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-...your-sha512-hash..." crossorigin="anonymous" />
+            </head>
+            <style>
+                body {
+                min-height: 100%;
+                position: absolute;
+                opacity: 0.94;
+                background-repeat: no-repeat; 
+                background-color:#FFFFFF;
+                width:100%; 
+                background-attachment: fixed;
+                !--background-size: 100% 100%;
+                
+                background-position: left;
+                background-image: url("{!$Resource.LogoBTF}") !important;
+                padding: 150px;  
+                font-family: 'Arial';  
+                }  
+                                
+                .login{  
+                width: 300px;  
+                border-radius: 25px ;  
+                font-size:14px;
+                }  
+                
+                .login1{  
+                width: 290px;  
+                margin:0px;  
+                padding: 0px;  
+                font-color: #305442;
+                border-radius:0px ;  
+                font-size:17px;
+                font-align:left;
+                
+                }  
+                
+                .login2{  
+                width: 300px;  
+                font-size:13px;
+                }  
+                
+                label{  
+                width: 300px;  
+                height: 20px;  
+                border: none;  
+                border-radius: 3px;  
+                padding-left: 8px;
+                margin: right;
+                }  
+                
+                #username{  
+                width: 350px;  
+                height: 50px;  
+                border: none;  
+                border-radius:10px;  
+                padding-left: 10px;
+                margin: right;
+                }  
+                #password{  
+                width: 200px;  
+                height: 30px;  
+                border: none;  
+                border-radius: 2px;  
+                padding-left: 8px;  
+                margin: right;
+                
+                }  
+                #loginButton{  
+                width: 150px;  
+                height: 30px;  
+                border: none;  
+                border-radius: 17px;  
+                padding-left: 7px;  
+                margin: right;
+                float: right;
+                text-align:center;
+                }  
+                span{  
+                color: white;  
+                font-size: 17px;  
+                }  
+                
+                .password-container {
+                position: relative;
+                }
+                
+                .password-toggle {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                cursor: pointer;
+                }
+                
+                .password-toggle i {
+                font-size: 15px;
+                color: #333;
+                }
+            </style>            
+            <body>
+                <table width="100%">
+                    <tr>
+                        <td style="width:57%">&nbsp;
+                        </td>
+                        <td style="width:43%;">
+                            <div class="login"  style="padding-top:45px">  
+                                <form id="login"  >    
+                                    <div style="font-size:15px;text-align:center;color:#FFFFFF">
+                                        <b>BRIGHTER TOMORROW FOUNDATION </b>
+                                    </div>
+                                    <BR/>
+                                    <apex:outputPanel layout="block">
+                                        <apex:outputLabel value="{!$Label.site.username}" for="username" style="color:#e5e4e2"/>
+                                        <apex:inputText label="Username" id="username" value="{!username}" html-placeholder="Username" style="padding:14px;width:19rem;border-radius: 7px ; background-color: rgba(0,0,0,0);border-color:#dcdcdc ;"/><br/>
+                                        <apex:outputLabel value="{!$Label.site.password}" for="password" style="color:#e5e4e2"/>
+                                        <div class="password-container">
+                                            <apex:inputSecret label="Password" id="password" value="{!password}" html-placeholder="Password" style="padding:14px;width:19rem;border-radius: 7px ; background-color: rgba(0,0,0,0); border-color:#dcdcdc" styleClass="password-field" />
+                                            <span class="password-toggle" onclick="togglePassword()">
+                                                <i class="fas fa-eye" style="margin-top: 0.8rem;"></i>
+                                            </span>
+                                        </div>
+                                        <apex:outputText value=""/><br/><br/>
+                                        <apex:outputLink value="{!$Page.CustomForgetLoginPage}" style="text-align:right;padding-top:8px;font-size:13px;color:#a9a9a9"> {!$Label.site.forgot_your_password_q}</apex:outputLink><br/><br/>
+                                        <input  type="checkbox" id="rememberUn" name="rememberUn" style="color:#a9a9a9;text-align:right;padding-top:10px;"/>&nbsp;Remember Me
+                                    </apex:outputPanel>
+                                </form>
+                                <div class="login2" style="padding-top:8px">
+                                    <apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" style="width:125px;padding:8px;background:#4d5d53;color:White;border-radius: 7px ; "/>
+                                </div>  
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            
+            <script>
+            function togglePassword() {
+                var passwordField = document.getElementById('{!$Component.password}');
+                var passwordToggle = document.querySelector('.password-toggle i');
+                
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    passwordToggle.classList.remove('fa-eye');
+                    passwordToggle.classList.add('fa-eye-slash');
+                } else {
+                    passwordField.type = 'password';
+                    passwordToggle.classList.remove('fa-eye-slash');
+                    passwordToggle.classList.add('fa-eye');
+                }
+            }
+            </script>
+        </html>
+    </apex:form>
+    
+</apex:page>

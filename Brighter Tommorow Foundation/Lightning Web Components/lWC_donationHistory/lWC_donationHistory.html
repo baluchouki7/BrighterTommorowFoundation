@@ -1,0 +1,81 @@
+<!--
+  @description       : 
+  @author            : Balchandra Chouki (baluchouki7@gmail.com)
+  @group             : 
+  @last modified on  : 02-04-2024
+  @last modified by  : Balchandra Chouki (baluchouki7@gmail.com)
+-->
+<template>
+    <lightning-card style="display:block; ">
+        <div class="c-container" > 
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_4-of-4">
+                    <h2 class="slds-text-heading_medium slds-var-p-left_small slds-var-p-bottom_medium bold-title"><b>Donor Dashboard</b></h2>
+                </div>
+                <div style="padding-left:12px; " class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Number of Donations</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">{numberOfDonations}</p></span>
+                </div>
+                
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Total Donation Amount</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">{donorAmount}</p></span>
+                </div>
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Last Donation Amount and Date</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">{lastDonationAmount}, {lastDonationDate}</p></span>
+                </div> 
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Donations For Donation Requests</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">₹{donatedAmount}</p></span>
+                </div>             
+            </div>
+        </div>
+<br/><br/>
+        <div> 
+            <h2 class="slds-text-heading_medium slds-var-p-left_small slds-var-p-bottom_medium bold-title"><b>Donation History</b></h2>
+            <lightning-layout >
+                <lightning-layout-item size="12" small-device-size="12" medium-device-size="12" large-device-size="12"
+                    padding="around-small">
+                        <div if:true={donationList} style="height:calc(100vh - 200px);"> 
+                                <lightning-datatable key-field="Id" sorted-by={sortBy}
+                                                    sorted-direction={sortDirection} onsort={doSorting} data={donationList}
+                                                    column-widths-mode="fixed" suppress-bottom-bar show-row-number-column
+                                                    row-number-offset={rowOffset} columns={donationColumns} hide-checkbox-column="true">
+                                                </lightning-datatable> 
+    
+                        </div> 
+                        <template if:true={error}>
+                            {error}
+                        </template>
+                        <div class="nav-buttons">
+                            <lightning-layout>
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <div class="slds-var-m-vertical_medium content" >
+                                        Displaying {startingRecord} to {endingRecord} of {totalRecountCount} records.
+                                    </div>
+                                </lightning-layout-item>
+                               
+                                <lightning-layout-item size="6" padding="around-small">
+                                    <div class="slds-var-m-vertical_medium content" style="text-align:right">
+                                        Page {page} of {totalPage}.
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                            <lightning-layout>
+                                <lightning-layout-item>
+                                    <lightning-button label="Previous" icon-name="utility:chevronleft"
+                                        onclick={previousHandler}></lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item flexibility="grow"></lightning-layout-item>
+                                <lightning-layout-item>
+                                    <lightning-button label="Next" icon-name="utility:chevronright"
+                                        icon-position="right" onclick={nextHandler}></lightning-button>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

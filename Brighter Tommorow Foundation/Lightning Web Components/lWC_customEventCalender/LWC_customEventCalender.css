@@ -1,0 +1,21 @@
+.fullcalendarjs {
+    max-width: 1000px;
+    margin: 40px auto;
+  }
+
+  .thankyou {
+    background-color:white;    
+   text-align: center; 
+ }
+ 
+ .parentcss{
+  background-color:white; 
+ }
+ 
+ h2{
+   text-align: center;
+ }
+ 
+ span{
+   color: red;
+ }

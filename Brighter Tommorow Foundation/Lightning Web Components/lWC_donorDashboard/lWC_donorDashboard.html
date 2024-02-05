@@ -1,0 +1,37 @@
+<!--
+  @description       : 
+  @author            : Balchandra Chouki (baluchouki7@gmail.com)
+  @group             : 
+  @last modified on  : 02-03-2024
+  @last modified by  : Balchandra Chouki (baluchouki7@gmail.com)
+-->
+<template>
+    <br/><br/>
+    <lightning-card style="display:block; ">
+        <div class="c-container" >
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_4-of-4">
+                    <h2 class="slds-text-heading_medium slds-var-p-left_small slds-var-p-bottom_medium bold-title"><b>Donor Dashboard</b></h2>
+                </div>
+                <div style="padding-left:12px; " class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Number of Donations</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">{numberOfDonations}</p></span>
+                </div>
+                
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Total Donation Amount</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">₹{donorAmount}</p></span>
+                </div>
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Last Donation Amount and Date</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">₹{lastDonationAmount}, {lastDonationDate}</p></span>
+                </div> 
+                <div class="slds-size_1-of-4" tabindex="0" role="tab">
+                    <span >Donations For Donation Requests</span><br >
+                    <span class="bolder"><p class="slds-text-heading_small bold-title">₹{donatedAmount}</p></span>
+                </div>            
+            </div>
+        </div>
+    </lightning-card>
+
+</template>

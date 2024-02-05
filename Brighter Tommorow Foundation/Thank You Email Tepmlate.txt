@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to [Your Organization's Name]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 20px auto;
+            padding: 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Brighter Tomorrow Foundation!</h1>
+
+        <p>Dear {!Account.Name},</p>
+
+        <p>We are thrilled to have you as a part of our community and deeply appreciate your commitment to making a positive impact.</p>
+
+        <p>As a valued donor, you play a crucial role in supporting our mission. Your generosity allows us to on providing education and resources to underprivileged children worldwide., and we couldn't be more grateful for your contribution.</p>
+
+        <p>Here's a quick overview of what you can expect as a Brighter Tomorrow Foundation donor:</p>
+
+        <ol>
+            <li><strong>Regular Updates:</strong> We'll keep you informed about the impact of your donations, providing updates on the projects and programs you've helped support.</li>
+            <li><strong>Exclusive Content:</strong> As a donor, you'll have access to exclusive content, behind-the-scenes stories, and special reports that showcase the difference your contributions are making.</li>
+            <li><strong>Events and Opportunities:</strong> Stay tuned for invitations to special events, volunteer opportunities, and community gatherings. We'd love to connect with you in person!</li>
+            <li><strong>Personalized Dashboard:</strong> Log in to your personalized donor dashboard on our website to track your donation history, view impact reports, and explore additional ways to get involved.</li>
+        </ol>
+
+        <p><strong>Next Steps:</strong></p>
+        <ol>
+            <li><strong>Explore Your Donor Dashboard:</strong> <a href="https://sfast-dev-ed.my.site.com/ExperienceCloud/s">Log in here</a></li>
+            <li><strong>Connect with Us:</strong> Follow us on <a href="https://www.facebook.com/">facebook</a> to stay connected and engaged with our community.</li>
+            <li><strong>Share Your Story:</strong> We'd love to hear why you chose to support Brighter Tomorrow Foundation. Share your story with us on social media or reply to this email.</li>
+        </ol>
+
+        <p>Thank you once again for joining us on this journey. Your support is making a real difference, and we look forward to building a meaningful relationship with you.</p>
+
+        <p>If you have any questions or if there's anything else you'd like to know, feel free to reach out to us at baluchouki@gmail.com or +918055665775.</p>
+
+        <p>Welcome to the Brighter Tomorrow Foundation family!</p>
+
+        <p>Warm regards,</p>
+        <p>Balchandra Chouki<br>
+        Support Engineer<br>
+        Brighter Tomorrow Foundation<br>
+        Email: baluchouki7@gmail.com<br>
+        Phone: +908055665775</p>
+    </div>
+</body>
+</html>

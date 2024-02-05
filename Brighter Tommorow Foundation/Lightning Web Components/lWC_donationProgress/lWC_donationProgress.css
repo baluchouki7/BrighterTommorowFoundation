@@ -1,0 +1,23 @@
+progress{
+    /*reset to default appearance*/
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+ 
+    width: 200px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #434343;
+}
+ 
+/*style for background track*/
+progress::-webkit-progress-bar {
+    background: rgb(221, 221, 221);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2) inset;
+    border-radius: 20px;
+}
+/*style for progress track*/
+progress::-webkit-progress-value {
+    background-image: linear-gradient(120deg,#ffd173 0,#18cc00 55%);
+    border-radius: 20px;
+}

@@ -1,0 +1,32 @@
+<!--
+  @description       : 
+  @author            : Balchandra Chouki (baluchouki7@gmail.com)
+  @group             : 
+  @last modified on  : 02-04-2024
+  @last modified by  : Balchandra Chouki (baluchouki7@gmail.com)
+-->
+<template>
+    <lightning-card style="display:block; ">
+        <div class="c-container" >
+            <div class="slds-grid slds-wrap">
+                <div class="slds-size_4-of-4">
+                    <div class="slds-box slds-box_x-small slds-text-align_center slds-var-m-around_small"><div style="padding:10px; color:rgb(0, 112, 210); "><i>Check <b>Brighter Tomorrow Foundation's</b> Upcoming Programs</i></div>
+                        <lightning-carousel>
+                            <!-- Use a for loop to iterate over your list of records -->
+                            <template for:each={carouselItems} for:item="item">
+                                <lightning-carousel-image
+                                    key={item.id}
+                                    src={item.src}
+                                    header={item.header}
+                                    description={item.description}
+                                    alternative-text={item.altText}
+                                    href={item.href} >
+                                </lightning-carousel-image>
+                            </template>
+                        </lightning-carousel> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
